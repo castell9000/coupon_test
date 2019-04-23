@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Coupon;
+use App\Facades\makeRandomStr;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Make_randnumController;
 
 class couponController extends Controller
 {
@@ -31,7 +31,6 @@ class couponController extends Controller
             'input_coupon' => 'required|alpha_num|min:16|max:16',
         ]);
         $upper_fix = strtoupper($request->input('input_coupon')); // 입력받은 문자열을 대문자로
-        debug($upper_fix);
         $exist_coupon = Coupon::where('coupon_code', $upper_fix);
         $check_exist=null;
         $check_used=null;
@@ -59,7 +58,7 @@ class couponController extends Controller
         ]);
         $upper_fix = strtoupper($request->input('prefix')); // 입력받은 prefix문자열을 대문자로
         $grp_num = $this->couponGrp_make(); // 쿠폰 그룹을 새로 만들고 새로 만든 그룹의 id를 가져옴
-        $make_rands = Make_randnumController::randnum(); // 13자리 랜덤 문자열 생성 (10만개)
+        $make_rands = makeRandomStr::makeCouponNum(); // 13자리 랜덤 문자열 생성 (10만개)
         $user_ids = User::pluck('id'); // 쿠폰생성중 랜덤 유저가 사용하게 하기 위한 코드 1
         $user_ids[] = null; // 쿠폰생성중 랜덤 유저가 사용하게 하기 위한 코드 2
         $coupon = null;

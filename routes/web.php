@@ -13,15 +13,15 @@
 
 Route::get('/',[
     'as' => 'login.create',
-    'uses' => 'SessionsController@create'
+    'uses' => 'sessionsController@create'
 ]);
 Route::post('/',[
     'as' => 'login.store',
-    'uses' => 'SessionsController@store'
+    'uses' => 'sessionsController@store'
 ]);
 Route::get('/logout',[
    'as' => 'login.destroy',
-   'uses'=> 'SessionsController@destroy'
+   'uses'=> 'sessionsController@destroy'
 ]);
 
 
