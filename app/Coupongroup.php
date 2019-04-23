@@ -11,4 +11,5 @@ class Coupongroup extends Model
     public function coupons(){
         return $this->hasMany(Coupon::class);
     }
+
 }
