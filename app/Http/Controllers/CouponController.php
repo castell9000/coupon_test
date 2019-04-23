@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\couponFunc;
+use App\Services\CouponFunc;
 use Illuminate\Http\Request;
 
-class couponController extends Controller
+class CouponController extends Controller
 {
     public function __construct() { // 로그인한 사람만 접근 가능
         $this->middleware('auth');
@@ -29,7 +29,7 @@ class couponController extends Controller
             'input_coupon' => 'required|alpha_num|min:16|max:16',
         ]);
 
-        $service = couponFunc::useCoupon($request);
+        $service = CouponFunc::useCoupon($request);
         flash($service);
         return redirect('/use');
 
@@ -39,7 +39,7 @@ class couponController extends Controller
            'prefix' => 'required|alpha_num|min:3|max:3',
         ]);
 
-        $service = couponFunc::makeCoupon($request);
+        $service = CouponFunc::makeCoupon($request);
 
         if ($service){
             flash('쿠폰 10만개가 추가되었습니다.');

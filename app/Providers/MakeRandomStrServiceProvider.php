@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class makeRandomStrServiceProvider extends ServiceProvider
@@ -15,7 +14,7 @@ class makeRandomStrServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('makeRandomStr', function (){
-            return new \App\Services\makeRandomStr;
+            return new \App\Services\MakeRandomStr;
         });
     }
 

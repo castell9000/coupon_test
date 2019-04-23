@@ -13,13 +13,13 @@ use App\Coupongroup;
 use App\User;
 use Illuminate\Http\Request;
 
-class couponFunc
+class CouponFunc
 {
     static public function makeCoupon(Request $request){
 
         $upper_fix = strtoupper($request->input('prefix')); // 입력받은 prefix문자열을 대문자로
-        $grp_num = couponFunc::makeCouponGrp(); // 쿠폰 그룹을 새로 만들고 새로 만든 그룹의 id를 가져옴
-        $make_rands = makeRandomStr::makeCouponNum(); // 13자리 랜덤 문자열 생성 (10만개)
+        $grp_num = CouponFunc::makeCouponGrp(); // 쿠폰 그룹을 새로 만들고 새로 만든 그룹의 id를 가져옴
+        $make_rands = MakeRandomStr::makeCouponNum(); // 13자리 랜덤 문자열 생성 (10만개)
         $user_ids = User::pluck('id'); // 쿠폰생성중 랜덤 유저가 사용하게 하기 위한 코드 1
         $user_ids[] = null; // 쿠폰생성중 랜덤 유저가 사용하게 하기 위한 코드 2
         $coupon = null;

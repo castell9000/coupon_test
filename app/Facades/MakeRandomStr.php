@@ -11,10 +11,10 @@ namespace App\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class makeRandomStr extends Facade
+class MakeRandomStr extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'makeRandomStr';
+        return 'MakeRandomStr';
     }
 }

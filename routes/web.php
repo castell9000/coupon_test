@@ -13,39 +13,39 @@
 
 Route::get('/',[
     'as' => 'login.create',
-    'uses' => 'sessionsController@create'
+    'uses' => 'SessionsController@create'
 ]);
 Route::post('/',[
     'as' => 'login.store',
-    'uses' => 'sessionsController@store'
+    'uses' => 'SessionsController@store'
 ]);
 Route::get('/logout',[
    'as' => 'login.destroy',
-   'uses'=> 'sessionsController@destroy'
+   'uses'=> 'SessionsController@destroy'
 ]);
 
 
 
 Route::get('/make',[
     'as' => 'coupon.mView',
-    'uses' => 'couponController@makeView'
+    'uses' => 'CouponController@makeView'
 ]);
 Route::post('/make', [
     'as' => 'coupon.make',
-    'uses' => 'couponController@makeCoupon'
+    'uses' => 'CouponController@makeCoupon'
 ]);
 
 
 Route::get('/use', [
     'as' => 'coupon.useview',
-    'uses' => 'couponController@useView'
+    'uses' => 'CouponController@useView'
 ]);
 Route::post('/use', [
     'as' => 'coupon.use',
-    'uses' => 'couponController@useCoupon'
+    'uses' => 'CouponController@useCoupon'
 ]);
 
 Route::get('/list',[
     'as' => 'list.cView',
-    'uses' => 'couponListController@listView'
+    'uses' => 'CouponListController@listView'
 ]);
