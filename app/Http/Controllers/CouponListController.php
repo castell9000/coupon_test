@@ -6,10 +6,6 @@ use Illuminate\Http\Request;
 
 class CouponListController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-    }
-
     public function listView(){
         if(auth()->user()->check_user==1){
             $coupons = \App\Coupon::latest()->paginate(50);

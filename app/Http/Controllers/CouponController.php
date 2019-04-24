@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
-    public function __construct() { // 로그인한 사람만 접근 가능
-        $this->middleware('auth');
-    }
-
     public function useView(){ // 쿠폰 사용 페이지 뷰 메소드
         return view('use');
     }

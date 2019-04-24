@@ -11,41 +11,47 @@
 |
 */
 
-Route::get('/',[
-    'as' => 'login.create',
-    'uses' => 'SessionsController@create'
-]);
-Route::post('/',[
-    'as' => 'login.store',
-    'uses' => 'SessionsController@store'
-]);
-Route::get('/logout',[
-   'as' => 'login.destroy',
-   'uses'=> 'SessionsController@destroy'
-]);
+Route::middleware(['middleware' => 'guest'])->group(function (){
+    Route::get('/',[
+        'as' => 'login.create',
+        'uses' => 'SessionsController@create'
+    ]);
+    Route::post('/',[
+        'as' => 'login.store',
+        'uses' => 'SessionsController@store'
+    ]);
+});
+
+Route::middleware(['middleware' => 'auth'])->group(function (){
+    Route::get('/logout',[
+        'as' => 'login.destroy',
+        'uses'=> 'SessionsController@destroy'
+    ]);
 
 
 
-Route::get('/make',[
-    'as' => 'coupon.mView',
-    'uses' => 'CouponController@makeView'
-]);
-Route::post('/make', [
-    'as' => 'coupon.make',
-    'uses' => 'CouponController@makeCoupon'
-]);
+    Route::get('/make',[
+        'as' => 'coupon.mView',
+        'uses' => 'CouponController@makeView'
+    ]);
+    Route::post('/make', [
+        'as' => 'coupon.make',
+        'uses' => 'CouponController@makeCoupon'
+    ]);
 
 
-Route::get('/use', [
-    'as' => 'coupon.useview',
-    'uses' => 'CouponController@useView'
-]);
-Route::post('/use', [
-    'as' => 'coupon.use',
-    'uses' => 'CouponController@useCoupon'
-]);
+    Route::get('/use', [
+        'as' => 'coupon.useview',
+        'uses' => 'CouponController@useView'
+    ]);
+    Route::post('/use', [
+        'as' => 'coupon.use',
+        'uses' => 'CouponController@useCoupon'
+    ]);
 
-Route::get('/list',[
-    'as' => 'list.cView',
-    'uses' => 'CouponListController@listView'
-]);
+    Route::get('/list',[
+        'as' => 'list.cView',
+        'uses' => 'CouponListController@listView'
+    ]);
+});
+
