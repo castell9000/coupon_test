@@ -53,5 +53,10 @@ Route::middleware(['middleware' => 'auth'])->group(function (){
         'as' => 'list.cView',
         'uses' => 'CouponListController@listView'
     ]);
+
+    Route::get('/statics',[
+        'as' => 'coupon.stat',
+        'uses' => 'CouponListController@statics'
+    ]);
 });
 

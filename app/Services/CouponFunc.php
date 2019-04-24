@@ -87,4 +87,34 @@ class CouponFunc
         }
         return $new_grp;
     }
+
+    static public function couponPaging(){
+        $coupons = null;
+//        if($grpName == null){
+            $coupons = Coupon::latest()->paginate(50);
+//        }else{
+//            $grp_id = Coupongroup::where('grp_name',$grpName)->first()->id;
+//            $coupons = Coupon::where('coupongroup_id',$grp_id)->latest()->paginate(50);
+//        }
+
+        return $coupons;
+    }
+
+    static public function staticCoupons(){
+        $grp_num = Coupongroup::count();
+        $static_arr = null;
+        $i=0;
+        while ($i<$grp_num){
+            $convert = ord(Coupongroup::first()->grp_name);
+            $check = chr($convert+$i);
+
+            $total = Coupongroup::where('grp_name',$check)->with('coupons')->first()->coupons->count();
+            $used = $total - Coupongroup::where('grp_name',$check)->with('coupons')->first()->coupons->where('user_id',null)->count();
+            $rate = $used/$total;
+            $i++;
+            $static_arr[] = [$check, $total, $used, $rate];
+        }
+
+        return $static_arr;
+    }
 }
