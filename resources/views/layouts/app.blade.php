@@ -22,7 +22,7 @@
                     @if(auth()->user()->check_user =='1')
                         <li role="presentation"><a href="{{ route('coupon.mView') }}">쿠폰 생성</a></li>
                         <li role="presentation"><a href="{{ route('list.cView') }}">쿠폰 관리</a></li>
-                        <li role="presentation"><a href="{{ route('coupon.stat') }}">쿠폰 관리</a></li>
+                        <li role="presentation"><a href="{{ route('coupon.stat') }}">쿠폰 통계</a></li>
                     @endif
                     <li role="presentation"><a href="/logout">Logout</a></li>
                 </ul>
