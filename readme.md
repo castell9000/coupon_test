@@ -13,6 +13,7 @@
   - email(unique, 이메일, 로그인에 사용)
   - name(유저 이름)
   - password(비밀번호)
+  - check_user(유저 권한 체크, 1=관리자,0=회원, default=0)
   
 - coupons table
     --
