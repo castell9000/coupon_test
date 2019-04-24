@@ -19,7 +19,7 @@ class CouponListController extends Controller
     public function statics(){
         if(auth()->user()->check_user==1){
             $coupons = CouponFunc::staticCoupons();
-            return view('list',compact('coupons'));
+            return view('statics',compact('coupons'));
         }else{
             flash("접근 할 수 없는 페이지입니다.");
             return redirect('/use');
