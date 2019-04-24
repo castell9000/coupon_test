@@ -110,7 +110,6 @@ class CouponFunc
         while ($i<$grp_num){
             $convert = ord($first->first()->grp_name);
             $check = chr($convert+$i);
-
             $bag = $first->where('grp_name',$check)->with('coupons')->first()->coupons;
             $total = $bag->count();
             $not_used = $bag->where('user_id',null)->count();
@@ -119,7 +118,6 @@ class CouponFunc
             $i++;
             $static_arr[] = [$check, $total, $used, $rate];
         }
-
         return $static_arr;
     }
 }

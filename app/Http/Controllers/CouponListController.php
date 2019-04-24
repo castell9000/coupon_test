@@ -10,7 +10,7 @@ class CouponListController extends Controller
 {
     public function listView(Request $request){
         if(auth()->user()->check_user==1){
-            $coupons = CouponFunc::couponPaging($request->group);
+            $coupons = CouponFunc::couponPaging(substr($request->path(),-1));
             $groups = Coupongroup::pluck('grp_name');
             debug($groups);
             return view('list',compact(['coupons', 'groups']));

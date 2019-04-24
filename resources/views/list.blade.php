@@ -5,7 +5,7 @@
         <h1>발행 쿠폰 리스트</h1>
         @if($groups != null)
             @foreach($groups as $group)
-                <p style="float: left; margin: 5px;"><a href="/list?group={{$group}}">{{ $group }} 그룹</a></p>
+                <p style="float: left; margin: 5px;"><a href="/list/{{$group}}">{{ $group }} 그룹</a></p>
             @endforeach
             <br/>
         @endif
