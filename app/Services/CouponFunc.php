@@ -88,28 +88,33 @@ class CouponFunc
         return $new_grp;
     }
 
-    static public function couponPaging(){
+    static public function couponPaging($grpName){
         $coupons = null;
-//        if($grpName == null){
+        $groups = null;
+        if($grpName == null){
             $coupons = Coupon::latest()->paginate(50);
-//        }else{
-//            $grp_id = Coupongroup::where('grp_name',$grpName)->first()->id;
-//            $coupons = Coupon::where('coupongroup_id',$grp_id)->latest()->paginate(50);
-//        }
+        }else{
+
+            $grp_id = Coupongroup::where('grp_name',$grpName)->first()->id;
+            $coupons = Coupon::where('coupongroup_id',$grp_id)->latest()->paginate(50);
+        }
 
         return $coupons;
     }
 
     static public function staticCoupons(){
-        $grp_num = Coupongroup::count();
+        $first = new Coupongroup();
+        $grp_num = $first->count();
         $static_arr = null;
         $i=0;
         while ($i<$grp_num){
-            $convert = ord(Coupongroup::first()->grp_name);
+            $convert = ord($first->first()->grp_name);
             $check = chr($convert+$i);
 
-            $total = Coupongroup::where('grp_name',$check)->with('coupons')->first()->coupons->count();
-            $used = $total - Coupongroup::where('grp_name',$check)->with('coupons')->first()->coupons->where('user_id',null)->count();
+            $bag = $first->where('grp_name',$check)->with('coupons')->first()->coupons;
+            $total = $bag->count();
+            $not_used = $bag->where('user_id',null)->count();
+            $used = $total - $not_used;
             $rate = $used/$total;
             $i++;
             $static_arr[] = [$check, $total, $used, $rate];
