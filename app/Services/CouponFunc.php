@@ -91,11 +91,11 @@ class CouponFunc
     static public function couponPaging($grpName){
         $coupons = null;
         $groups = null;
-        if($grpName == null){
+        if($grpName == 'list'){
             $coupons = Coupon::latest()->paginate(50);
         }else{
-
-            $grp_id = Coupongroup::where('grp_name',$grpName)->first()->id;
+            $subParam = substr($grpName, -1);
+            $grp_id = Coupongroup::where('grp_name',$subParam)->first()->id;
             $coupons = Coupon::where('coupongroup_id',$grp_id)->latest()->paginate(50);
         }
 

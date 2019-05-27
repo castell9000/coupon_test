@@ -9,8 +9,9 @@ use Illuminate\Http\Request;
 class CouponListController extends Controller
 {
     public function listView(Request $request){
+        debug($request->path());
         if(auth()->user()->check_user==1){
-            $coupons = CouponFunc::couponPaging(substr($request->path(),-1));
+            $coupons = CouponFunc::couponPaging($request->path());
             $groups = Coupongroup::pluck('grp_name');
             debug($groups);
             return view('list',compact(['coupons', 'groups']));

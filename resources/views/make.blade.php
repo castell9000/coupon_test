@@ -14,7 +14,7 @@
                         <label for="prefix" class="col-md-4 col-form-label text-md-right">Prefix</label>
                         <div class="col-md-6">
                             <input type="text" name="prefix" class="form-control" value="{{ old('name') }}"><br/>
-                            {!! $errors->first('alpha_num', '<span class="form-error>Only use alphabet or number</span>') !!}
+                            {!! $errors->first('prefix', '<span class="form-error">:message</span>') !!}
                         </div>
                     </div>
 
